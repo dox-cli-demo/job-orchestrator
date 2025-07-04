@@ -1,5 +1,7 @@
 package com.comprosoft.controller;
 
+import java.util.UUID;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,7 +22,9 @@ public class JobController {
     @PostMapping("/run")
     public String runTasks(@RequestParam int tasks) {
         try {
-            orchestratorService.runJobTasks(123L, tasks);
+        	long requestId = Math.abs(UUID.randomUUID().getMostSignificantBits());
+
+            orchestratorService.runJobTasks(requestId, tasks);
             return "Started " + tasks + " job(s).";
         } catch (Exception e) {
             return "Error: " + e.getMessage();
