@@ -12,7 +12,9 @@ spec:
           command:
             - sh
             - -c
-            - echo "Data for partition ${taskId}" > /mnt/nfs/output/${requestId}/locationdata/${taskId}.txt
+            - |
+              mkdir -p /mnt/nfs/output/${requestId}/locationdata && \
+              echo "Data for partition ${taskId}" > /mnt/nfs/output/${requestId}/locationdata/${taskId}.txt
           volumeMounts:
             - name: nfs-volume
               mountPath: /mnt/nfs/output
