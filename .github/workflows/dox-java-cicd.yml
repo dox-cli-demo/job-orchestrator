@@ -1,0 +1,12 @@
+name: DOX Java CICD
+
+on:
+  push:
+    branches:
+      - main
+
+  workflow_dispatch: # allows manual trigger from GitHub UI
+
+jobs:
+  call-dox-java-cicd:
+    uses: dox-cli-demo/dox-github-actions/.github/workflows/dox-java-cicd.yml@main
