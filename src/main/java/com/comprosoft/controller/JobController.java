@@ -23,8 +23,8 @@ public class JobController {
 	public String runTasks(@RequestParam int tasks) {
 		try {
 			int requestId = new Random().nextInt(Integer.MAX_VALUE); // Range: 0 to 2,147,483,647
-			orchestratorService.runJobTasks((long) requestId, tasks);
-			return "Started " + tasks + " job(s).";
+			orchestratorService.runJobTasks(requestId + "", tasks);
+			return "Started " + tasks + " job(s).  ID : "+ requestId;
 		} catch (Exception e) {
 			return "Error: " + e.getMessage();
 		}

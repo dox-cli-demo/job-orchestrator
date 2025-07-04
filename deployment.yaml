@@ -103,7 +103,7 @@ spec:
       serviceAccountName: orchestrator-sa
       containers:
         - name: orchestrator
-          image: devstackhub/job-orchestrator:20250704.081002.0
+          image: devstackhub/job-orchestrator:20250704.081503.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080

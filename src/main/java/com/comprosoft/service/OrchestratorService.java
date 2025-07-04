@@ -30,13 +30,13 @@ public class OrchestratorService {
 
 	}
 
-	public void runJobTasks(Long requestId, int totaltasks) throws Exception {
+	public void runJobTasks(String requestId, int totaltasks) throws Exception {
 		for (int i = 1; i <= totaltasks; i++) {
 			createJob(requestId, i);
 		}
 	}
 
-	public String renderToString(Long requestId, int taskId) throws Exception {
+	public String renderToString(String requestId, int taskId) throws Exception {
 		Template template = freemarkerConfig.getTemplate("job-template.ftl");
 
 		Map<String, Object> dataModel = new HashMap<>();
@@ -49,7 +49,7 @@ public class OrchestratorService {
 		}
 	}
 
-	private void createJob(Long requestId, int taskId) throws Exception {
+	private void createJob(String requestId, int taskId) throws Exception {
 		String jobTemplateYaml = renderToString(requestId, taskId);
 
 		// Deserialize rendered YAML to Fabric8 Job object
