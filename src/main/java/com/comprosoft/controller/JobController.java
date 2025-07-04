@@ -1,6 +1,6 @@
 package com.comprosoft.controller;
 
-import java.util.UUID;
+import java.util.Random;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,21 +13,20 @@ import com.comprosoft.service.OrchestratorService;
 @RequestMapping("/api/jobs")
 public class JobController {
 
-    private final OrchestratorService orchestratorService;
+	private final OrchestratorService orchestratorService;
 
-    public JobController(OrchestratorService orchestratorService) {
-        this.orchestratorService = orchestratorService;
-    }
+	public JobController(OrchestratorService orchestratorService) {
+		this.orchestratorService = orchestratorService;
+	}
 
-    @PostMapping("/run")
-    public String runTasks(@RequestParam int tasks) {
-        try {
-        	long requestId = Math.abs(UUID.randomUUID().getMostSignificantBits());
-
-            orchestratorService.runJobTasks(requestId, tasks);
-            return "Started " + tasks + " job(s).";
-        } catch (Exception e) {
-            return "Error: " + e.getMessage();
-        }
-    }
+	@PostMapping("/run")
+	public String runTasks(@RequestParam int tasks) {
+		try {
+			int requestId = new Random().nextInt(Integer.MAX_VALUE); // Range: 0 to 2,147,483,647
+			orchestratorService.runJobTasks((long) requestId, tasks);
+			return "Started " + tasks + " job(s).";
+		} catch (Exception e) {
+			return "Error: " + e.getMessage();
+		}
+	}
 }
