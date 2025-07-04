@@ -20,4 +20,4 @@ spec:
       volumes:
         - name: nfs-volume
           persistentVolumeClaim:
-            claimName: nfs-pvc
+            claimName: batch-storage-pvc
